@@ -1,17 +1,33 @@
-insertBackgroundPic();
+const photographer = document.getElementById('author');
+getBackgroundPic();
 
-async function fetchBackground() {
+async function getBackgroundPic() {
 	const url = "https://apis.scrimba.com/unsplash/photos/random?orientation=landscape&query=nature";
 
 	try {
 		const response = await fetch(url);
 
-		return response.json();
+		if (!response.ok) {
+			throw new Error("oh fuck! it's an error!");
+		}
+
+		const data = await response.json();
+		insertFetchedBackground(data);
 	}
-	catch (error) {
-		(document.getElementsByTagName("BODY"))[0].innerHTML = `<h1 style="color:blue;">WHAT'S ALL THIS, THEN?</h1>`;
-		console.error(error);
+	catch {
+		console.error("Something went wrong. Using default image.");
+		insertDefaultBackground();
 	}
+}
+
+function insertFetchedBackground(data) {
+	document.body.style.backgroundImage = `url("${data.urls.raw}")`;
+	photographer.innerText = `Photographer: ${data.user.name}`;
+}
+
+function insertDefaultBackground() {
+	document.body.style.backgroundImage = `url("./assets/images/Yellowjackets-campfire.jpg")`;
+	photographer.innerText = `"We'd love to have you for dinner..."`;
 }
 
 async function insertBackgroundPic() {
