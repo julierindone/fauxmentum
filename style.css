@@ -1,6 +1,6 @@
 :root {
   --dark-gray: #222222;
-	--text-shadow: 0 0 1.1em var(--dark-gray);
+  --text-shadow: 0 0 1.1em var(--dark-gray);
 }
 
 /* LAYOUT */
@@ -53,10 +53,11 @@ main {
   justify-content: space-between;
 }
 
-#crypto {
+#crypto-top {
   display: flex;
   gap: 0.65em;
   align-items: center;
+  margin-bottom: 0.2em;
 }
 
 #time {
@@ -65,17 +66,39 @@ main {
 
 /* TYPOGRAPHY */
 
-p {
+p,
+li {
   color: white;
   font-weight: 800;
   text-shadow: var(--text-shadow);
-	-webkit-text-stroke: var(--dark-gray) .02px;
+  -webkit-text-stroke: var(--dark-gray) .02px;
 }
 
 .top,
 #author {
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
+}
 
+#crypto {
+  padding: 0.4em 0.6em 0.2em;
+  border-radius: 0.3em;
+  transition-property: border-color, backdrop-filter;
+  transition-duration: 1s;
+}
+
+#crypto p,
+#crypto li {
+  text-shadow: 0 0 0.2em #80808088;
+}
+
+ul.crypto-values {
+  margin-block: 0;
+}
+
+ul.crypto-values > li {
+  font-weight: 500;
+  line-height: 1.55;
+  padding-left: 0.3em;
 }
 
 #time {
@@ -87,4 +110,14 @@ p {
 #author {
   width: fit-content;
   backdrop-filter: blur(.32px);
+}
+
+div.focused-backdrop {
+  backdrop-filter: brightness(0.77);
+  border: 3px solid #33333330;
+}
+
+div.unfocused-backdrop {
+  backdrop-filter: brightness(0.975);
+  border: 3px solid #ff000000;
 }
