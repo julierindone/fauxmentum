@@ -53,6 +53,12 @@ main {
   justify-content: space-between;
 }
 
+#crypto {
+  display: flex;
+  gap: 0.65em;
+  align-items: center;
+}
+
 #time {
   align-self: center;
 }
@@ -81,6 +87,4 @@ p {
 #author {
   width: fit-content;
   backdrop-filter: blur(.32px);
-}
-
 }
