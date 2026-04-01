@@ -4,6 +4,7 @@ const cryptoTop = document.getElementById('crypto-top');
 
 getBackgroundPic();
 getCrypto();
+setInterval(getTime, 1000);
 
 cryptoDiv.addEventListener('mouseover', () => {
 	cryptoDiv.classList.replace('unfocused-backdrop', 'focused-backdrop');
@@ -90,4 +91,10 @@ function insertFetchedCrypto(data) {
 
 function insertCryptoNotAvailable() {
 	cryptoDiv.innerHTML = `<p>Data not available.</p>`;
+}
+
+function getTime() {
+	let time = new Date;
+	let formattedTime = time.toLocaleTimeString("en-us", { timeStyle: "short" });
+	document.getElementsByTagName('time')[0].innerText = formattedTime;
 }
