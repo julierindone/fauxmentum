@@ -5,7 +5,12 @@ const cryptoTop = document.getElementById('crypto-top');
 getBackgroundPic();
 getCrypto();
 setInterval(getTime, 1000);
+// TODO: What would be a cleaner way of inserting the weather upon load?
+// It wouldn't load the first time until after 800,000ms without the calling the function separately first.
+renderWeather();
+setInterval(renderWeather, 800000);
 
+// TODO: Add focused backdrop to weather and photographer.
 cryptoDiv.addEventListener('mouseover', () => {
 	cryptoDiv.classList.replace('unfocused-backdrop', 'focused-backdrop');
 });
@@ -81,9 +86,9 @@ function insertFetchedCrypto(data) {
 	const cryptoValues = document.createElement('ul');
 	cryptoValues.classList.add('crypto-values');
 	cryptoValues.innerHTML = `
-		<li>Current: $${data.currentPrice}</li>
-		<li>24-hour high: $${data.highPrice}</li>
-		<li>24-hour low: $${data.lowPrice}</li>`;
+		<li>🎯 Current: $${data.currentPrice}</li>
+		<li>🔥 24-hr high: $${data.highPrice}</li>
+		<li>💩 24-hr low: $${data.lowPrice}</li>`;
 
 	cryptoDiv.appendChild(cryptoTop);
 	cryptoDiv.appendChild(cryptoValues);
@@ -97,4 +102,44 @@ function getTime() {
 	let time = new Date;
 	let formattedTime = time.toLocaleTimeString("en-us", { timeStyle: "short" });
 	document.getElementsByTagName('time')[0].innerText = formattedTime;
+}
+function renderWeather() {
+	const position = navigator.geolocation.getCurrentPosition(position => {
+		// return fetchWeather(position.coords.latitude, position.coords.longitude)
+		return fetchWeather(position.coords.latitude, position.coords.longitude);
+	});
+}
+
+async function fetchWeather(lat, lon) {
+	const url = `https://apis.scrimba.com/openweathermap/data/2.5/weather?lat=${lat}&lon=${lon}&units=imperial`;
+
+	try {
+		let response = await fetch(url);
+
+		if (!response.ok) {
+			console.error(`oh fuck! a weather error!`);
+		}
+		const data = await response.json();
+
+		getWeatherHtml(data);
+	}
+	catch {
+		document.getElementById('weather').innerHTML = `
+		<p>Weather report<br>
+			is not available<br>
+			at this time.</p>`;
+		console.error(error);
+	}
+}
+
+function getWeatherHtml(data) {
+	const weather = (data.weather[0]);
+	const icon = `https://openweathermap.org/payload/api/media/file/${weather.icon}.png`;
+
+	document.getElementById('weather').innerHTML = `
+		<p>${data.name} weather:</p>
+		<div class="weather-inner-div">
+			<p>${data.main.temp}°</p>
+			<img src=${icon} />
+		</div>`;
 }
