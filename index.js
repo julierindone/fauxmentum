@@ -36,7 +36,7 @@ async function getBackgroundPic() {
 		const data = await response.json();
 		insertFetchedBackground(data);
 	}
-	catch {
+	catch (error) {
 		console.error("Something went wrong. Using default image.");
 		insertDefaultBackground();
 	}
@@ -64,7 +64,7 @@ async function getCrypto() {
 		const cryptoData = createCryptoDataItem(data);
 		insertFetchedCrypto(cryptoData);
 	}
-	catch {
+	catch (error) {
 		console.error("something went wrong. no crypto for you!");
 		insertCryptoNotAvailable();
 	}
@@ -127,12 +127,12 @@ async function fetchWeather(lat, lon) {
 
 		getWeatherHtml(data);
 	}
-	catch {
+	catch (error) {
 		document.getElementById('weather').innerHTML = `
 		<p>Weather report<br>
 			is not available<br>
 			at this time.</p>`;
-		console.error("weather not found");
+		console.error("weather not found", error);
 	}
 }
 
