@@ -45,7 +45,7 @@ main {
   flex-direction: column;
   justify-content: space-between;
   padding: 0.9em 1.2em;
-	font-size: clamp(0.85rem, 0.8rem + 0.785vw, 2.1rem);
+  font-size: clamp(0.85rem, 0.8rem + 0.785vw, 2.1rem);
 }
 
 .top {
@@ -91,22 +91,22 @@ ul.crypto-values {
 
 ul.crypto-values > li {
   font-weight: 400;
-	line-height: 1.35;
-	word-spacing: 0.1em;
+  line-height: 1.35;
+  word-spacing: 0.1em;
 }
 
 #weather {
-	display: flex;
-	flex-direction: column;
-	align-items: end;
+  display: flex;
+  flex-direction: column;
+  align-items: end;
   height: fit-content;
   gap: 0.2em;
 }
 
 .weather-inner-div {
-	display: flex;
+  display: flex;
   flex-wrap: wrap;
-	align-items: center;
+  align-items: center;
   justify-content: flex-end;
   gap: 0.7em;
 }

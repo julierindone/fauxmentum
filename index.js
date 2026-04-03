@@ -110,7 +110,6 @@ function getTime() {
 }
 function renderWeather() {
 	const position = navigator.geolocation.getCurrentPosition(position => {
-		// return fetchWeather(position.coords.latitude, position.coords.longitude)
 		return fetchWeather(position.coords.latitude, position.coords.longitude);
 	});
 }
