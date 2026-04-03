@@ -3,7 +3,7 @@
 	"name": "fauxmentum dashboard",
 	"version": "1.0.0",
 	"description": "a simple dashboard with nature images, shitcoin, local weather, and the time of day. (I built this to practice async js with a Scrimba.com tutorial, but I think cryptocurrency is a scourge upon this earth and don't condone its usage.)",
-	"icon": "./assets/images/icon.png",
+	"icon": "./images/icon.png",
 	"chrome_url_overrides": {
 		"newtab": "index.html"
 	}

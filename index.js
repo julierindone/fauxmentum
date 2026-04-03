@@ -30,11 +30,9 @@ async function getBackgroundPic() {
 
 	try {
 		const response = await fetch(url);
-
 		if (!response.ok) {
 			throw new Error("oh fuck! it's an error!");
 		}
-
 		const data = await response.json();
 		insertFetchedBackground(data);
 	}
@@ -50,7 +48,7 @@ function insertFetchedBackground(data) {
 }
 
 function insertDefaultBackground() {
-	document.body.style.backgroundImage = `url("./assets/images/Yellowjackets-campfire.jpg")`;
+	document.body.style.backgroundImage = `url("./images/Yellowjackets-campfire.jpg")`;
 	photographer.innerText = `"We'd love to have you for dinner..."`;
 }
 
@@ -146,8 +144,8 @@ function getWeatherHtml(data) {
 
 	document.getElementById('weather').innerHTML = `
 		<div class="weather-inner-div">
-		<p>${temp}°</p>
+			<p>${temp}°</p>
 			<img src=${icon} />
-	</div>
-	<p>${data.name}</p>`;
+		</div>
+		<p>${data.name}</p>`;
 }
