@@ -1,6 +1,7 @@
-const photographer = document.getElementById('author');
+const photographer = document.getElementById('photographer');
 const cryptoDiv = document.getElementById('crypto');
 const cryptoTop = document.getElementById('crypto-top');
+const weatherDiv = document.getElementById('weather');
 
 getBackgroundPic();
 getCrypto();
@@ -10,12 +11,18 @@ setInterval(getTime, 1000);
 renderWeather();
 setInterval(renderWeather, 800000);
 
-// TODO: Add focused backdrop to weather and photographer.
-cryptoDiv.addEventListener('mouseover', () => {
-	cryptoDiv.classList.replace('unfocused-backdrop', 'focused-backdrop');
+document.addEventListener('mouseover', (e) => {
+	const widget = e.target.closest('.widget');
+	if (widget) {
+		widget.classList.replace('unfocused-widget', 'focused-widget');
+	}
 });
-cryptoDiv.addEventListener('mouseleave', () => {
-	cryptoDiv.classList.replace('focused-backdrop', 'unfocused-backdrop');
+
+document.addEventListener('mouseout', (e) => {
+	const widget = e.target.closest('.widget');
+	if (widget) {
+		widget.classList.replace('focused-widget', 'unfocused-widget');
+	}
 });
 
 async function getBackgroundPic() {
@@ -128,18 +135,19 @@ async function fetchWeather(lat, lon) {
 		<p>Weather report<br>
 			is not available<br>
 			at this time.</p>`;
-		console.error(error);
+		console.error("weather not found");
 	}
 }
 
 function getWeatherHtml(data) {
 	const weather = (data.weather[0]);
 	const icon = `https://openweathermap.org/payload/api/media/file/${weather.icon}.png`;
+	const temp = Math.round(data.main.temp);
 
 	document.getElementById('weather').innerHTML = `
-		<p>${data.name} weather:</p>
 		<div class="weather-inner-div">
-			<p>${data.main.temp}°</p>
+		<p>${temp}°</p>
 			<img src=${icon} />
-		</div>`;
+	</div>
+	<p>${data.name}</p>`;
 }

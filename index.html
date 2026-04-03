@@ -13,15 +13,17 @@
 <body>
 	<main>
 		<div class="top">
-			<div id="crypto" class="unfocused-backdrop">
+			<div id="crypto" class="unfocused-widget widget transition">
 			</div>
-			<div id="weather">
-				<p>loading weather report...</p>
+			<div id="weather" class="unfocused-widget widget transition">
+				<p class="transition">loading weather...</p>
 			</div>
 		</div>
 
-		<time class="time"></time>
-		<p id="author"></p>
+		<time class="time transition"></time>
+		<div>
+			<p id="photographer" class="unfocused-widget widget transition"></p>
+		</div>
 	</main>
 	<script src="index.js" type="module"></script>
 </body>

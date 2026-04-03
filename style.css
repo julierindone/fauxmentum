@@ -44,7 +44,7 @@ main {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1.3em 1.2em;
+  padding: 0.9em 1.2em;
 	font-size: clamp(0.85rem, 0.8rem + 0.785vw, 2.1rem);
 }
 
@@ -70,35 +70,16 @@ p,
 li,
 time {
   color: white;
-  font-weight: 700;
-  text-shadow: var(--text-shadow);
+  font-weight: 600;
   -webkit-text-stroke: var(--dark-gray) 0.07px;
 }
 
-.top,
-#author {
+p, li {
   letter-spacing: 0.04em;
 }
 
 .top p {
   font-size: 1.2em;
-  font-weight: 600;
-}
-
-#crypto {
-  padding: 0 0.6em 0.2em;
-  border-radius: 0.3em;
-  transition-property: border-color, backdrop-filter;
-  transition-duration: 400ms;
-}
-
-#crypto-top > p,
-ul.crypto-values li {
-  text-shadow: 0 0 0.3em var(--dark-gray);
-}
-
-img.crypto-icon {
-  width: 3.2rem;
 }
 
 ul.crypto-values {
@@ -118,7 +99,8 @@ ul.crypto-values > li {
 	display: flex;
 	flex-direction: column;
 	align-items: end;
-	padding-top: 0.7em;
+  height: fit-content;
+  gap: 0.2em;
 }
 
 .weather-inner-div {
@@ -126,17 +108,11 @@ ul.crypto-values > li {
   flex-wrap: wrap;
 	align-items: center;
   justify-content: flex-end;
-	margin-top: -0.4em;
+  gap: 0.7em;
 }
 
 .weather-inner-div p {
-	font-size: 2.2em;
-}
-
-#weather img {
-  width: 4.2em;
-  aspect-ratio: auto;
-  margin-right: -0.25em;
+  font-size: 2.15em;
 }
 
 time {
@@ -147,17 +123,44 @@ time {
   text-shadow: 0 0 5px var(--dark-gray);
 }
 
-#author {
+#photographer {
   width: fit-content;
-  backdrop-filter: blur(0.3px);
+  text-shadow: var(--text-shadow);
+  align-content: end;
+  flex-basis: 25%;
+  padding-block: 0.4em;
 }
 
-div.focused-backdrop {
+/* WIDGETS, ICONS, AND IMAGES */
+
+.widget {
+  text-shadow: 0 0 0.3em var(--dark-gray);
+  border-radius: 0.3em;
+  padding: 0.3em 0.6em 0.2em;
+}
+
+.transition {
+  transition-property: border-color, backdrop-filter;
+  transition-duration: 400ms;
+}
+
+.focused-widget {
   backdrop-filter: brightness(0.77) blur(3.75px);
   border: 3px solid #33333330;
 }
 
-div.unfocused-backdrop {
+.unfocused-widget {
   backdrop-filter: brightness(0.975);
   border: 3px solid #ff000000;
+}
+
+img.crypto-icon {
+  width: 3.2rem;
+}
+
+#weather img {
+  width: 4.5em;
+  aspect-ratio: 3/2;
+  object-fit: cover;
+  margin-inline: -1.15em -0.55em;
 }
